@@ -1,0 +1,12 @@
+{
+    "name": "my-bot",
+    "version": "1.0.0",
+    "description": "My First Discord Bot",
+    "main": "bot.js",
+    "author": "Tony Le",
+    "dependencies": {
+        "@discordjs/opus": "^0.3.3",
+        "discord.js": "^12.4.1",
+        "ffmpeg-static": "^4.2.7"
+    }
+}
