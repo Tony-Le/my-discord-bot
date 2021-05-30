@@ -120,3 +120,4 @@ dist
 #other files
 auth.json
 voice-commands.json
+/daemon

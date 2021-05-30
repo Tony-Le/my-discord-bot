@@ -5,18 +5,24 @@ const voice_commands = require('./voice-commands.json');
 const { MessageAttachment } = require('discord.js');
 const fs = require('fs');
 
+const prefix = '%'
+
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
 });
 
 client.on('message', message => {
     // Join the same voice channel of the author of the message
-    if (message.content.toLowerCase() in voice_commands) {
+    if (prefix + message.content.toLowerCase() in voice_commands) {
         if (message.member.voice.channel) {
             const connection = message.member.voice.channel.join().then((connection) => {
-                command = message.content;
-                audio = voice_commands[command].audio;
-                picture = voice_commands[command].picture;
+                const command = message.content;
+                const commandWithoutPrefix = command.substr(
+                  Math.max(0, command.indexOf(prefix) + 1),
+                  command.length
+                );
+                const audio = voice_commands[commandWithoutPrefix].audio;
+                const picture = voice_commands[commandWithoutPrefix].picture;
 
                 const dispatcher = connection.play(audio, { volume: 0.5 });
                 let start = 0;
@@ -62,13 +68,12 @@ client.on('message', message => {
         }
     }
     else if (message.content == '!help') {
-        let text = 'The list of available commands. Pre-pend with an \'!\' to run the command. !{command}:';
+        let text = 'The list of available commands. Pre-pend with an \'' + prefix +'\' to run the command.' + prefix + '{command}:';
         text += "\n";
         text += "help";
         for (command in voice_commands) {
             text += "\n";
-            commandWithoutExclamationMark = command.substr(Math.max(0, command.indexOf('!') + 1), command.length);
-            text += commandWithoutExclamationMark
+            text += command;
         }
         message.channel.send(text);
     }
