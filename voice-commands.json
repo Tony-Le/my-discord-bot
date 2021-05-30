@@ -1,0 +1,15 @@
+{
+    "openup": {
+        "audio": "Woop Woop.ogg",
+        "picture" : "tenor.gif"
+    },
+    "kiryu": {
+        "audio": "Dame Da Ne.ogg"
+    },
+    "majima": {
+        "audio": "24HourCinderella.ogg"
+    },
+    "gura": {
+        "audio": "Dame Da Ne (Gura).ogg"
+    }
+}
